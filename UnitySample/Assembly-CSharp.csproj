@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectGuid>{8CA90CBA-908E-E48D-E4F6-89E98795426A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_0;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\AssetBundle\AssetBundleConfig.cs" />
+    <Compile Include="Assets\Scripts\AssetBundle\AssetBundleManager.cs" />
+    <Compile Include="Assets\Scripts\AssetBundle\AssetBundleUtil.cs" />
+    <Compile Include="Assets\Scripts\AssetBundle\BundlePackageTools.cs" />
+    <Compile Include="Assets\Scripts\AssetBundle\LoadTest.cs" />
+    <Compile Include="Assets\Scripts\AssetBundle\characterTest.cs" />
+    <Compile Include="Assets\Scripts\Core\Singleton.cs" />
+    <Compile Include="Assets\Scripts\IO\SafeFileStream.cs" />
+    <Compile Include="Assets\Scripts\IO\SafeMemoryStream.cs" />
+    <Compile Include="Assets\Scripts\IO\SafeStream.cs" />
+    <Compile Include="Assets\Scripts\Logic\UpdateTest.cs" />
+    <Compile Include="Assets\Scripts\SceneTest.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\BoxOutline.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\CircleOutline.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\ListPool.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\MeshModTextGlow.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\ModifiedShadow.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\Outline8.cs" />
+    <Compile Include="Assets\Scripts\UI\VertexEffects\UITextGradient.cs" />
+    <Compile Include="Assets\Scripts\UIAtlas.cs" />
+    <Compile Include="Assets\Scripts\UIAtlasUtility.cs" />
+    <Compile Include="Assets\Scripts\Update\MD5Util.cs" />
+    <Compile Include="Assets\Scripts\Update\UpdateConfig.cs" />
+    <Compile Include="Assets\Scripts\Update\UpdateFileCollector.cs" />
+    <Compile Include="Assets\Scripts\Update\UpdateManager.cs" />
+    <Compile Include="Assets\Shaders\MirrorReflection.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\CenteredSliderLabel.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\DialogInputHelper.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\DialogTreeViewInputHelper.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ListView\ListViewCustomSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ListView\ListViewCustomSampleComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ListView\ListViewUnderlineSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ListView\ListViewUnderlineSampleComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ListView\ListViewVariableHeight.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ListView\ListViewVariableHeightComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Progressbar\SampleProgressBar1.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Progressbar\SampleProgressBar2.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Progressbar\SampleProgressbar.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\RangeSlider\RangeSliderFloatSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\RangeSlider\RangeSliderSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\HarborShop\HarborListView.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\HarborShop\HarborListViewComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\HarborShop\HarborOrder.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\HarborShop\HarborOrderLine.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\HarborShop\HarborShop.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\IOrder.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\IOrderLine.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\Item.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\JRPGShop\JRPGOrder.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\JRPGShop\JRPGOrderLine.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\JRPGShop\JRPGShop.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\JRPGShop\TraderListView.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\JRPGShop\TraderListViewComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\Prices.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\ResultOrderLine.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Shops\Trader.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\StandaloneExit.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Table\SteamSpyComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Table\SteamSpyItem.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\Table\SteamSpyView.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\ListViewSaveIndicies.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\LocalizationSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\SampleFilter.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\SmokeTest.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\TestColorPicker.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\TestFolderRenamed\TestScriptRenamed.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\TestListView.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\TestListViewPerformance.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\TestScrollRectEvents.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestScripts\TestTreeView.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TestTabs.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TileView\TileViewComponentSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TileView\TileViewItemSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TileView\TileViewResizeHelper.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TileView\TileViewSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TileView\TileViewToggleDirection.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ToDoList\ToDoListView.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ToDoList\ToDoListViewComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\ToDoList\ToDoListViewItem.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TreeView\TreeViewSample.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TreeView\TreeViewSampleComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TreeView\TreeViewSampleData.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TreeView\TreeViewSampleItem.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TreeView\TreeViewSampleItemContinent.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\TreeView\TreeViewSampleItemCountry.cs" />
+    <Compile Include="Assets\UIWidgets\Sample Assets\UITestSamples.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Accordion\Accordion.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Accordion\AccordionEvent.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Accordion\AccordionItem.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Accordion\AccordionItemComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\CenteredSlider\CenteredSlider.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\CenteredSlider\CenteredSliderBase.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\CenteredSlider\CenteredSliderVertical.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorHSV.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPicker.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPickerABlock.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPickerColorBlock.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPickerHSVBlock.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPickerHSVPalette.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPickerRGBBlock.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\ColorPickerRGBPalette.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ColorPicker\IColorPickerBlock.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Combobox\Combobox.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Combobox\ComboboxCustom.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Combobox\ComboboxIcons.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Combobox\ComboboxIconsItemComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Dialog\BringToFront.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Dialog\Dialog.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Dialog\DialogActions.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\BaseDragSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\DragSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\IDropSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\ListViewIconsDragSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\ListViewIconsDropSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\TreeViewDropSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\TreeViewNodeDragSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Drag-and-Drop\TreeViewNodeDropSupport.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Draggable\Draggable.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Draggable\DraggableHandle.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Draggable\OnDragKeepSelected.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Draggable\OnDragListener.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\EasyLayout\EasyLayout.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\EasyLayout\EasyLayoutCompact.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\EasyLayout\EasyLayoutGrid.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ITemplatable.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\EasyLayoutBridge.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\IItemHeight.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ILayoutBridge.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\IListViewItemHeight.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListView.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewBase.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewCustom.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewCustomHeight.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewGameObjects.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewIcons.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewIconsItemComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewItem.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewItemEventData.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\ListViewStringComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ListView\StandardLayoutBridge.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Notify\Notify.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Notify\NotifySequenceManager.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Progressbar.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\RangeSlider\RangeSlider.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\RangeSlider\RangeSliderBase.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\RangeSlider\RangeSliderFloat.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\RangeSlider\RangeSliderFloatVertical.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\RangeSlider\RangeSliderHandle.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\RangeSlider\RangeSliderVertical.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Resizable\Resizable.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Resizable\ResizableHeader.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Resizable\ResizableHeaderCell.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Resizable\ResizableHeaderDragCell.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Resizable\Splitter.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\ScrollRectEvents.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\SlideBlock\SlideBlock.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\SlideBlock\SlideBlockHandle.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Spinner\Spinner.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Spinner\SpinnerBase.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Spinner\SpinnerFloat.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Switch.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\Tab.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabButton.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabIconActiveButton.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabIconButton.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabIconDefaultButton.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabIcons.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\Tabs.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabsCustom.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tabs\TabsIcons.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Templates.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TileView.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Tooltip.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\ListNode.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeNode.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeNodeToggle.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeView.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeViewComponent.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeViewComponentBase.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeViewCustom.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\TreeView\TreeViewItem.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\Animations.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ButtonAdvanced.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\Extensions.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ICollectionChanged.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ICollectionItemChanged.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\IObservable.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\IObservableList.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ImageAdvanced.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ModalHelper.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ObservableList.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\ResizeListener.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\SelectListener.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\SlideUp.cs" />
+    <Compile Include="Assets\UIWidgets\Standart Assets\Utilites\Utilites.cs" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FXMaker_Mask Alpha Blended.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Add MeshBillboard.shader" />
+    <None Include="Assets\Shaders\UI\ImageFlashEffect.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\BlendOneOne.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FXMaker_Mask Cutout.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\GlowAdditive.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Alpha-Diffuse TintColor.shader" />
+    <None Include="Assets\Shaders\BlueWar\LightmappedCommon.cginc" />
+    <None Include="Assets\Shaders\K_shaders\Toony-Basic.shader" />
+    <None Include="Assets\Shaders\DepthOfField\SeparableWeightedBlurDof34.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S AlphaBlend Scroll.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Additive.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\ProFlaresLeavesShader.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex1UV.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\ShadowWithLinearFalloff.shader" />
+    <None Include="Assets\Shaders\K_shaders\LightMapDiffuse.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FreeDistortionCutOut.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPROutlineImageSpaceBlur.shader" />
+    <None Include="Assets\Shaders\K_shaders\Toony-CutOut.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S AlphaBlend Scroll.shader" />
+    <None Include="Assets\UIWidgets\changelog.txt" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\Downsample.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\BrightPassFilter.shader" />
+    <None Include="Assets\Shaders\K_shaders\HeatDistortion.shader" />
+    <None Include="Assets\Shaders\K_shaders\BoomBeachEasy.shader" />
+    <None Include="Assets\Shaders\avadai_Dissolve_Additive.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Alpha Blend.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DiffuseRim.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\Dynamic\MipmappedShadow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\Additive.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Particle AddSoft A8.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Distortion.shader" />
+    <None Include="Assets\Shaders\K_shaders\screen_xp_03.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FXMaker_Mask Additive Tint.shader" />
+    <None Include="Assets\Shaders\WaterBlended.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex1Rim.shader" />
+    <None Include="Assets\Shaders\WaterCommonCG.cginc" />
+    <None Include="Assets\Shaders\BlueWar\LightmappedOpaque.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\Background.shader" />
+    <None Include="Assets\UI\Fonts\Fight\GLHit.fnt" />
+    <None Include="Assets\Shaders\Particle\Particle Alpha Blend 1.shader" />
+    <None Include="Assets\Shaders\K_shaders\UnitColoredTransparent_Background.shader" />
+    <None Include="Assets\Shaders\K_shaders\FOW.shader" />
+    <None Include="Assets\Shaders\Particle\DistortionParticlesCutout.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonEnvFade.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Alpha Blend Overlay.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Particle AddSoft A8.shader" />
+    <None Include="Assets\Shaders\K_shaders\AdditionTransparent.shader" />
+    <None Include="Assets\UIWidgets\Shaders\UIGradientShaderVLineHSV.shader" />
+    <None Include="Assets\Shaders\K_shaders\KTACutOut.shader" />
+    <None Include="Assets\UI\Fonts\Fight\Fight.fnt" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Alpha-Specular TintColor.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\Particles.shader" />
+    <None Include="Assets\Shaders\DepthOfField\TiltShiftHdrLensBlur.shader" />
+    <None Include="Assets\Shaders\K_shaders\AlphaTest-DiffuseGlow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WaterFree.shader" />
+    <None Include="Assets\Shaders\Particle\Additive2.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\DownsampleFallback.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Mask1.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\VignetteShader.shader" />
+    <None Include="Assets\Shaders\DepthOfField\DepthOfFieldScatter.shader" />
+    <None Include="Assets\Shaders\K_shaders\AlphaBlend2.shader" />
+    <None Include="Assets\Shaders\avadai_MaskUV01_Additive.shader" />
+    <None Include="Assets\Shaders\Particle\effect_Rim.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Add.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPROutlineDepth.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Blend.shader" />
+    <None Include="Assets\Shaders\K_shaders\daoguang.shader" />
+    <None Include="Assets\UI\Fonts\empty.txt" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMBasic.shader" />
+    <None Include="Assets\Shaders\K_shaders\AlphaBlend.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Rim.shader" />
+    <None Include="Assets\UI\Fonts\TTFUnicode.txt" />
+    <None Include="Assets\Shaders\K_shaders\ToonFresnal.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\HLVolumeFog.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\MobileBloom.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\Water.shader" />
+    <None Include="Assets\Shaders\K_shaders\BlurEffectConeTaps.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\LensFlareCreate.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\GlowAdditiveSimple.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonEnvAlphaBlended.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMDeepFog.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\Dynamic\ShadowWithoutFalloff.shader" />
+    <None Include="Assets\Shaders\K_shaders\TerrainMirror.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\Blit.shader" />
+    <None Include="Assets\Shaders\K_shaders\KTA-AdditiveLayout.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DiffuseRimSpecular.shader" />
+    <None Include="Assets\Shaders\K_shaders\ToonSpecularNotGlobal.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Smoke Scroll.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\AlphaTest-DiffuseBack.shader" />
+    <None Include="Assets\Shaders\DepthOfField\DepthOfFieldDX11.shader" />
+    <None Include="Assets\Shaders\K_shaders\Additive2.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Diffuse_1.shader" />
+    <None Include="Assets\UIWidgets\Shaders\UIGradientShaderPlaneRGB.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\Dynamic\LightxShadowWithLinearFalloff.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Add Scroll.shader" />
+    <None Include="Assets\Shaders\K_shaders\Additive_offset.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\grayShader.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Shadow\ShadowTransparent.shader" />
+    <None Include="Assets\Shaders\K_shaders\Transparent Colored with mask.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DistortionCullBack+1.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\Skybox2.shader" />
+    <None Include="Assets\UI\bitmap_font\hurt\hurt.fnt" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DistortionCutOut.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DistortionParticles.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Shadow\ShadowOpaque.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMBasicGlow.shader" />
+    <None Include="Assets\Shaders\FXWater4Simple.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\ProFlaresBumpSpecShader.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\DiffuseRimSpecular.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Dissolve_WorldCoords.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonAnsiotropy.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\MipmappedShadow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FXMaker_Mask Additive.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Add1.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Caps\tex2DlodExtensionCheck.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\GlowAdditive.shader" />
+    <None Include="Assets\Shaders\avadai_Dissolve_AlphaBlend.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\ParticleCook-Transparent-AlphaBlend-Diffuse.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMTransparent.shader" />
+    <None Include="Assets\UI\bitmap_font\crit\crit.fnt" />
+    <None Include="Assets\UIWidgets\Shaders\UIGradientShaderHLineRGB.shader" />
+    <None Include="Assets\Shaders\ShadingCommon.cginc" />
+    <None Include="Assets\Shaders\K_shaders\AdditionTransparentCutout.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMTransparentGlow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\Rim.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2RimMask.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\AlphaTest-DiffuseDoublesided.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\Skybox.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\HLWater.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Multiply Soft.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2RimDetail.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\GlowAdditiveTwoColor.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMTransparentCutOut.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Add Scroll.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\Basic.shader" />
+    <None Include="Assets\UIWidgets\Shaders\UIGradientShaderPlaneHSV.shader" />
+    <None Include="Assets\Shaders\K_shaders\Toony-BasicOutline.shader" />
+    <None Include="Assets\Shaders\K_shaders\Sector.shader" />
+    <None Include="Assets\Shaders\DepthOfField\DepthOfField34.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Particle Add A8.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\ProFlaresBumpSpecShader.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\BrightPassFilter2.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMSplat3Glow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\ProFlareShader.shader" />
+    <None Include="Assets\Shaders\K_shaders\KTA-Grass.shader" />
+    <None Include="Assets\Shaders\Grass\ClassicNoise3D.cginc" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\LightxShadowWithoutFalloff.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Mask2.shader" />
+    <None Include="Assets\Shaders\K_shaders\Toony-Glow.shader" />
+    <None Include="Assets\UIWidgets\readme.txt" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FreeDistortionCullBack.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Alpha-Specular TintColor.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Particles.shader" />
+    <None Include="Assets\Shaders\K_shaders\SM_TransparentRim.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\MobileBlur.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\DiffuseRim.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonTextureUnlit.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Particle Add A8.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\GlowAdditiveTwoColor.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Dissolve_TexturCoords.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Particle Multiply A8.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Detail2.shader" />
+    <None Include="Assets\Shaders\MobileSpecular.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Distort2.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FreeDistortionCullOff.shader" />
+    <None Include="Assets\Shaders\K_shaders\ShiftColor.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonEnvNoOutline.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FXMakerGrayscaleEffect.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Add Overlay.shader" />
+    <None Include="Assets\Shaders\K_shaders\Additive-Layout.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPROutlineImageSpaceBlend.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Blend.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRToonStandard.cginc" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Shader_HeatDistort.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Detail1.shader" />
+    <None Include="Assets\Shaders\K_shaders\Toony-LightedOutline.shader" />
+    <None Include="Assets\Shaders\UnlitDistance.shader" />
+    <None Include="Assets\Shaders\K_shaders\daoguang-Add.shader" />
+    <None Include="Assets\Shaders\K_shaders\screen_xp_02.shader" />
+    <None Include="Assets\Shaders\K_shaders\Toony-Lighted.shader" />
+    <None Include="Assets\Shaders\K_shaders\GrayscaleEffect_Ex.shader" />
+    <None Include="Assets\Shaders\K_shaders\OutLighting.shader" />
+    <None Include="Assets\Shaders\K_shaders\screen_xp_01.shader" />
+    <None Include="Assets\Shaders\DepthOfField\Bokeh34.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2RimAdd.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Smoke Scroll.shader" />
+    <None Include="Assets\Shaders\avadai_MaskUV01_AlphaBlend.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Multiply Soft Scroll.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\Water.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\ProFlareShader.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\LightxShadowWithLinearFalloff.shader" />
+    <None Include="Assets\Shaders\InkingOutline.shader" />
+    <None Include="Assets\Shaders\K_shaders\KTA - Transparent Colored.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DistortionParticlesCutout.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\LightWithLinearFalloff.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMSplat2Glow.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\MaskBloom.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Particle Multiply A8.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\ShadowWithoutFalloff.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Opaque\Tex1.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\Dynamic\LightxShadowWithoutFalloff.shader" />
+    <None Include="Assets\Shaders\BlueWar\FarModelEnv.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\SeparableBlurPlus.shader" />
+    <None Include="Assets\UIWidgets\Shaders\UIGradientShaderVLineRGB.shader" />
+    <None Include="Assets\Shaders\ColorChange.shader" />
+    <None Include="Assets\Shaders\Grass\Surface.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\MultiPassHollywoodFlares.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex1.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Shadow\ShadowForReplacement.shader" />
+    <None Include="Assets\Shaders\SSAO\SSAOShader.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Multiply Soft.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Caps\glslCheck.shader" />
+    <None Include="Assets\Shaders\K_shaders\AdditiveLowQueue.shader" />
+    <None Include="Assets\Shaders\K_shaders\Energy Ball.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\WFX_S Multiply Soft Scroll.shader" />
+    <None Include="Assets\Shaders\K_shaders\ToonFresnalSpecular.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonEnv.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\DSPProjector.cginc" />
+    <None Include="Assets\Shaders\BloomAndFlares\BrightPassFilter2.shader" />
+    <None Include="Assets\Shaders\BumpSpec.shader" />
+    <None Include="Assets\UI\bitmap_font\heal\heal.fnt" />
+    <None Include="Assets\Shaders\DepthOfField\SeparableBlur.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMSplat3.shader" />
+    <None Include="Assets\Shaders\SimpleIce.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\LightWithoutFalloff.shader" />
+    <None Include="Assets\Shaders\K_shaders\KTA_WATER.shader" />
+    <None Include="Assets\UI\bitmap_font\time\time.fnt" />
+    <None Include="Assets\Shaders\TweenTexture.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\GlowAdditiveSimple.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonEnvAlphaBlendedNoOutline.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\LineColoredBlended.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\WFX_S Alpha-Diffuse TintColor.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Scene\LMSplat2.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DistortionCullOff.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\HLInclude.cginc" />
+    <None Include="Assets\Shaders\K_shaders\effect_Distort2.shader" />
+    <None Include="Assets\Shaders\Particle\HeatDistort.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\BrightPassFilter.shader" />
+    <None Include="Assets\Shaders\K_shaders\TerrainBase.shader" />
+    <None Include="Assets\Shaders\K_shaders\BlendModesOverlay.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPROutlineImageSpaceGen.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Opaque\Tex1Fog.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Projector\Dynamic\ShadowWithLinearFalloff.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\LineBackground.shader" />
+    <None Include="Assets\Shaders\BlueWar\BWSkyBox.shader" />
+    <None Include="Assets\Shaders\Particle\AlphaBlend.shader" />
+    <None Include="Assets\Shaders\K_shaders\AlphaBlendLowQueue.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\GlowAdditive.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\LensFlareCreate.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\Blur.shader" />
+    <None Include="Assets\Shaders\K_shaders\Additive.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\BlurAndFlares.shader" />
+    <None Include="Assets\Shaders\K_shaders\Transparent Colored with mask reverse.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\CopyMipmap.shader" />
+    <None Include="Assets\Shaders\Grass\Kernel.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Add2.shader" />
+    <None Include="Assets\Shaders\K_shaders\EasyWater.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\Blend.shader" />
+    <None Include="Assets\Shaders\Particle\Particle Add 1.shader" />
+    <None Include="Assets\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\BlendForBloom.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\SM_2sided_transparent.shader" />
+    <None Include="Assets\Shaders\K_shaders\Lightning.shader" />
+    <None Include="Assets\UIWidgets\Shaders\UIGradientShaderHLineHSV.shader" />
+    <None Include="Assets\UIWidgets\Sample Assets\classes.txt" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\GlowAdditiveSimple.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\EraseShadow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\FXMaker_Mask Alpha Blended Tint.shader" />
+    <None Include="Assets\Shaders\K_shaders\AlphaBlendHighQueue.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\DistortionCutOutBack.shader" />
+    <None Include="Assets\Shaders\HY\VolumeFog.shader" />
+    <None Include="Assets\UI\Fonts\Combo\ComboFont.fnt" />
+    <None Include="Assets\Shaders\K_shaders\Shadow.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\ParticleCook-Transparent-Additive-Diffuse.shader" />
+    <None Include="Assets\Shaders\K_shaders\MotionBlur.shader" />
+    <None Include="Assets\Shaders\K_shaders\TransparentRim.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Blit\Downsample.cginc" />
+    <None Include="Assets\Shaders\BlueWar\NPRLitToonEye.shader" />
+    <None Include="Assets\Shaders\K_shaders\Transparent Colored with mask 1.shader" />
+    <None Include="Assets\UI\Fonts\Fight\GLHitBlood.fnt" />
+    <None Include="Assets\Shaders\Particle\Particle Blend Overlay.shader" />
+    <None Include="Assets\Shaders\Particle\HLShader\Transparent\Tex2Distort1.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_03\ProFlaresLeavesShader.shader" />
+    <None Include="Assets\Shaders\K_shaders\Toony-Lighted-AlphaTest.shader" />
+    <None Include="Assets\Shaders\BlueWar\NPRToonLighting.cginc" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\ParticleCook-Transparent-AlphaBlend-Diffuse-Z.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_02\WaterFree.shader" />
+    <None Include="Assets\Shaders\DynamicShadowProjector\Shadow\DSPShadow.cginc" />
+    <None Include="Assets\Shaders\K_shaders\TerrainCustomDiffuse.shader" />
+    <None Include="Assets\Shaders\SSAO\frag_ao.cginc" />
+    <None Include="Assets\Shaders\BloomAndFlares\BlurAndFlares.shader" />
+    <None Include="Assets\Shaders\Particle\Shaders_01\SM_TransparentRim.shader" />
+    <None Include="Assets\Shaders\BloomAndFlares\BlendForBloom.shader" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

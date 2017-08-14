@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\烧饼\Desktop\UnitySample\Library\UnityAssemblies\UnityEditor.dll" /&gt;&#xD;
+  &lt;Assembly Path="D:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Unity Subset v3.5\mscorlib.dll" /&gt;&#xD;
+  &lt;Assembly Path="F:\Unity\Unity Test Demo\UnitySample\Library\UnityAssemblies\UnityEngine.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Unity Full v3.5\mscorlib.dll" /&gt;&#xD;
+  &lt;Assembly Path="F:\Unity\Unity Test Demo\UnitySample\Library\UnityAssemblies\UnityEditor.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\烧饼\Desktop\UnitySample5a77\UnitySample\Library\UnityAssemblies\UnityEditor.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
