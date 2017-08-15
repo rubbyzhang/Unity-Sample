@@ -5,401 +5,48 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 using AssetBundles;
 using JetBrains.Annotations;
 using Object = UnityEngine.Object;
 
-
-class AssetItemInfo
-{
-    public string Guid;
-    public long FileId;
-    public string FileName;
-    public Type FileType;
-
-    public AssetItemInfo()
-    {
-        Guid = "";
-        FileId = 0;
-        FileName = "";
-    }
-}
-
-class BuildInResourceManager
-{
-    Dictionary<long, bool> mCanReplaceAssetDic = new Dictionary<long, bool>();
-
-    Dictionary<long, AssetItemInfo> mSrcAssetFileInfos = new Dictionary<long, AssetItemInfo>();
-    Dictionary<long, AssetItemInfo> mReplaceAssetFileInfos = new Dictionary<long, AssetItemInfo>();
-
-    public static List<Type> ConstAssetTypeList =
-        new List<Type>
-        {
-            typeof (Material),
-            typeof (Texture2D),
-            typeof (AnimationClip),
-            typeof (AudioClip),
-            typeof (Sprite),
-            typeof(Shader),
-            typeof(Font),
-            typeof (Mesh)
-        };
-
-    private string ConstReplaceShaderAssetFolder = "Assets/BuildInResources/Editor/BuildInShader/";
-
-    public void Extract()
-    {
-        mSrcAssetFileInfos.Clear();
-        mReplaceAssetFileInfos.Clear();
-        mCanReplaceAssetDic.Clear();
-
-        ExtractInternalResource("Resources/unity_builtin_extra" , "Assets/BuildInResources/Res/");
-    }
-
-    private void ExtractInternalResource(string BuildInPath , string outputPath)
-    {
-        string outputFullPath = AssetBundleUtil.ToFullPath(outputPath);
-        if (Directory.Exists(outputFullPath))
-        {
-            Directory.CreateDirectory(outputFullPath);
-        }
-
-        Object[] UnityAssets = AssetDatabase.LoadAllAssetsAtPath(BuildInPath);
-        foreach (var asset in UnityAssets)
-        {
-            string path = AssetDatabase.GetAssetPath(asset);
-            Debug.Log("________________________ Path:" + path + ", Name:" + asset.name + ",Type:" + asset.GetType());
-
-            AssetItemInfo srcItem = GetAssetItem(asset);
-            if (!mSrcAssetFileInfos.ContainsKey(srcItem.FileId))
-            {
-                mSrcAssetFileInfos.Add(srcItem.FileId, srcItem);
-            }
-
-            if (!mCanReplaceAssetDic.ContainsKey(srcItem.FileId))
-            {
-                mCanReplaceAssetDic.Add(srcItem.FileId,true);
-            }
-
-            string newResAssetPath = ExtractResItem(asset, outputPath);
-//
-//            if (item.FileType == typeof (Sprite))
-//            {
-//                SetSpriteImportSetting(outputPath + asset);
-//            }
-//            else if (item.FileType == typeof(Texture2D))
-//            {
-//                //todo
-//            }
-
-            string newItemAssetPath = string.Empty;
-            if (srcItem.FileType == typeof (Sprite) || srcItem.FileType == typeof (Texture2D) || srcItem.FileType == typeof (Material))
-            {
-                if (!string.IsNullOrEmpty(newResAssetPath))
-                {
-                    newItemAssetPath = AssetBundleUtil.ToProjectPath(newResAssetPath); ;
-                }
-            }
-            else if (srcItem.FileType == typeof (Shader))
-            {
-                string str = FindReplaceShader(asset.name);
-                if (string.IsNullOrEmpty(str))
-                {
-                    Debug.LogError("Find Shader Fail:" + asset.name);
-                    continue;
-                }
-                newItemAssetPath = AssetBundleUtil.ToProjectPath(str);
-            }
-
-            if (!string.IsNullOrEmpty(newItemAssetPath))
-            {
-                UnityEngine.Object newObj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(newItemAssetPath);
-                AssetItemInfo newitem = GetAssetItem(newObj);
-                if (newitem == null)
-                {
-                    Debug.LogError("Miss new Item, Path:" + newItemAssetPath);
-                    continue;
-                }
-
-                if (!mReplaceAssetFileInfos.ContainsKey(srcItem.FileId))
-                {
-                    mReplaceAssetFileInfos.Add(srcItem.FileId, newitem);
-                }
-            }
-        }
-
-        foreach (var assetPairItem in mCanReplaceAssetDic)
-        {
-            long fileiD = assetPairItem.Key;
-            Debug.Log("<color=red>FileId:" + fileiD + "</color>");
-            if (mSrcAssetFileInfos.ContainsKey(fileiD))
-            {
-                Debug.Log("Src guid:" + mSrcAssetFileInfos[fileiD].Guid + ",name:" + mSrcAssetFileInfos[fileiD].FileName);
-            }
-
-            if (mReplaceAssetFileInfos.ContainsKey(fileiD))
-            {
-                Debug.Log("dst guid:" + mReplaceAssetFileInfos[fileiD].Guid + ",name:" + mReplaceAssetFileInfos[fileiD].FileName);
-            }
-        }
-    }
-
-
-    private AssetItemInfo GetAssetItem(UnityEngine.Object target)
-    {
-        if (null == target )
-        {
-            return null ;
-        }
-        
-        AssetItemInfo assetItem = new AssetItemInfo();
-        assetItem.FileName = target.name;
-        assetItem.Guid = GetGuid(target);
-        assetItem.FileId = GetFileID(target);
-        assetItem.FileType =  target.GetType();
-        return assetItem;
-    }
-
-    private string ExtractResItem(Object srcAssetItem , string outputPath)
-    {
-        if (null == srcAssetItem)
-        {
-            return string.Empty;
-        }
-
-        Type assetType = srcAssetItem.GetType();
-        string name = srcAssetItem.name;
-        string path = AssetDatabase.GetAssetPath(srcAssetItem);
-
-        if (assetType == typeof(Material))
-        {
-            string createPath = outputPath  + name + ".mat";
-            Material newMat = new Material(srcAssetItem as Material);
-            AssetDatabase.CreateAsset(newMat, createPath);
-
-            return createPath;
-        }
-        else if (assetType == typeof(Texture2D))
-        {
-            string createPath = outputPath + name + ".png";
-            SaveTexture(srcAssetItem as Texture2D, createPath);
-
-            return createPath;
-        }
-        else if (assetType == typeof(Sprite))
-        {
-            string createPath = outputPath + name + ".png";
-            Texture2D tex = (srcAssetItem as Sprite).texture;
-            SaveTexture(tex, createPath);
-
-            return createPath;
-        }
-        else if (assetType == typeof (Shader))   //直接下载shader 放在Editor下
-        {
-            return string.Empty;
-        }
-        else
-        {
-            Debug.Log("没有提取的类型 ----- Path:" + path + ", Name:" + name + ",Type:" + assetType);
-            return string.Empty;
-        }
-
-        return string.Empty;
-    }
-
-    private void SaveTexture(Texture2D tex, string assetPath)
-    {
-        if (tex == null)
-        {
-            return;
-        }
-
-        byte[] bytes = tex.GetRawTextureData();   //不可读
-        Texture2D newTexture = new Texture2D(tex.width, tex.height, tex.format, tex.mipmapCount > 0);
-        newTexture.LoadRawTextureData(bytes);
-
-        newTexture.Apply();
-        byte[] pngBytes = newTexture.EncodeToPNG();
-        Object.DestroyImmediate(newTexture);
-        File.WriteAllBytes(assetPath, pngBytes);
-    }
-
-    private List<string> mShaderFileList = new List<string>();
-
-    private string FindReplaceShader(string assetName)
-    {
-        if (string.IsNullOrEmpty(assetName))
-        {
-            return string.Empty;
-        }
-
-        string shaderFullPath = AssetBundleUtil.ToFullPath(ConstReplaceShaderAssetFolder);
-        if (mShaderFileList == null || mShaderFileList.Count == 0)
-        {
-            mShaderFileList = GetAllTargetFile(shaderFullPath);
-        }
-
-        foreach (var shaderPath in mShaderFileList)
-        {
-            string shadertAssetPath = AssetBundleUtil.ToProjectPath(shaderPath);
-            Object shaderObj = AssetDatabase.LoadAssetAtPath<Object>(shadertAssetPath);
-            if (shaderObj != null && shaderObj.name== assetName)
-            {
-                return shaderPath;
-            }
-        }
-
-        return String.Empty; 
-    }
-
-    private List<string> GetAllTargetFile(string rootFolderPath)
-    {
-        List<string> fileList = new List<string>();
-        if (string.IsNullOrEmpty(rootFolderPath))
-        {
-            return fileList;
-        }
-
-        DirectoryInfo folder = new DirectoryInfo(rootFolderPath);
-        if (!folder.Exists)
-        {
-            if (File.Exists(rootFolderPath))
-            {
-                fileList.Add(rootFolderPath);
-            }
-            else
-            {
-                Debug.LogError(" rootFolderPath" + rootFolderPath + "必须为文件夹或者单个有效文件");
-            }
-
-            return fileList;
-        }
-
-        FileSystemInfo[] files = folder.GetFileSystemInfos();
-        int length = files.Length;
-
-        for (int i = 0; i < length; i++)
-        {
-            if (files[i] is DirectoryInfo)
-            {
-                fileList.AddRange(GetAllTargetFile(files[i].FullName));
-            }
-            else
-            {
-                string path = AssetBundleUtil.Normarlize(files[i].FullName);
-                fileList.Add(path);
-            }
-        }
-
-        fileList = fileList.Distinct().ToList();
-        fileList.RemoveAll(t => t.EndsWith(".meta"));
-        fileList.RemoveAll(Directory.Exists);
-
-        return fileList;
-    }
-
-    private void SetSpriteImportSetting(string assetPath)
-    {
-        if (string.IsNullOrEmpty(assetPath))
-        {
-            return;
-        }
-
-        TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
-        if (importer != null)
-        {
-            importer.textureType = TextureImporterType.Sprite;
-            importer.wrapMode = TextureWrapMode.Clamp;
-            importer.mipmapEnabled = false;
-            importer.spriteImportMode = SpriteImportMode.Single;
-            importer.filterMode = FilterMode.Bilinear;
-            importer.maxTextureSize = 1024;
-
-            if (importer.DoesSourceTextureHaveAlpha())
-            {
-                importer.alphaIsTransparency = true;
-                TextureImporterPlatformSettings androidSetting = new TextureImporterPlatformSettings();
-                androidSetting.name = "Android";
-                androidSetting.maxTextureSize = 1024;
-                androidSetting.format = TextureImporterFormat.ETC2_RGBA8;
-                androidSetting.overridden = true;
-                TextureImporterPlatformSettings iosSetting = new TextureImporterPlatformSettings();
-                iosSetting.name = "iPhone";
-                iosSetting.maxTextureSize = 1024;
-                iosSetting.format = TextureImporterFormat.ASTC_RGBA_4x4;
-                iosSetting.overridden = true;
-                importer.SetPlatformTextureSettings(iosSetting);
-                importer.SetPlatformTextureSettings(androidSetting);
-            }
-            else
-            {
-                TextureImporterPlatformSettings androidSetting = new TextureImporterPlatformSettings();
-                androidSetting.name = "Android";
-                androidSetting.maxTextureSize = 1024;
-                androidSetting.format = TextureImporterFormat.ETC2_RGB4;
-                androidSetting.overridden = true;
-
-                TextureImporterPlatformSettings iosSetting = new TextureImporterPlatformSettings();
-                iosSetting.name = "iPhone";
-                iosSetting.maxTextureSize = 1024;
-                iosSetting.format = TextureImporterFormat.ASTC_RGB_4x4;
-                iosSetting.overridden = true;
-                importer.SetPlatformTextureSettings(iosSetting);
-                importer.SetPlatformTextureSettings(androidSetting);
-            }
-            importer.SaveAndReimport();
-        }
-    }
-
-
-    private static PropertyInfo inspectorMode = typeof (SerializedObject).GetProperty("inspectorMode",
-        BindingFlags.NonPublic | BindingFlags.Instance);
-
-    long GetFileID(UnityEngine.Object target)
-    {
-        SerializedObject serializedObject = new SerializedObject(target);
-        inspectorMode.SetValue(serializedObject, InspectorMode.Debug, null);
-        SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
-        return localIdProp.longValue;
-    }
-
-    string GetGuid(string path)
-    {
-        if (string.IsNullOrEmpty(path))
-        {
-            return string.Empty;
-        }
-
-        string GUID = AssetDatabase.AssetPathToGUID(path);
-        return GUID;
-    }
-
-    string GetGuid(UnityEngine.Object target)
-    {
-        if (null == target)
-        {
-            return string.Empty;
-        }
-
-        string path = AssetDatabase.GetAssetPath(target);
-        string GUID = AssetDatabase.AssetPathToGUID(path);
-        return GUID;
-    }
-}
-
 public static class ExtractBunildInResources
 {
     //---------------------------------------------------------------------------------------
+    static BuildInResourceManager buildInManager = new BuildInResourceManager();
 
-    [MenuItem("Build/Extract Internal Resource 222")]
+    [MenuItem("Extract Buildin/Extract BuildIn Resource")]
     public static void ExtractInternalResource22()
     {
-        BuildInResourceManager mgr =new BuildInResourceManager();
-        mgr.Extract();
+        buildInManager.Extract();
     }
 
-    [MenuItem("Build/Asset Bundle/Get Dependencies")]
+
+    [MenuItem("Extract Buildin/Foprce Update BuildIn Resource")]
+    public static void ExtractInternalResourceForce()
+    {
+        buildInManager.Extract(true);
+    }
+
+    [MenuItem("Extract Buildin/Replace Yaml")]
+
+    static void ReplaceYamlData()
+    {
+        Object[] objects = Selection.objects;
+        if (objects.Length == 0)
+        {
+            return;
+        }
+
+        Object selectObj = objects[0];
+        string assetPath = AssetDatabase.GetAssetPath(selectObj);
+        buildInManager.Extract();
+        buildInManager.Replace(assetPath);
+    }
+
+    [MenuItem("Extract Buildin/Get Dependencies")]
     public static void GetDependencies2()
     {
         Object[] objects = Selection.objects;
@@ -420,11 +67,10 @@ public static class ExtractBunildInResources
             Debug.Log("________________________ :" + dependencies[i]);
         }
 
-
         //        WriteMdFile(dependencies.Distinct().ToList());
     }
 
-    [MenuItem("Build/Asset Bundle/Get Dependencies2")]
+    [MenuItem("Extract Buildin/Get Dependencies2")]
     public static void GetDependencies3()
     {
         Object[] objects = Selection.objects;
@@ -499,7 +145,7 @@ public static class ExtractBunildInResources
             typeof (Mesh)
         };
 
-    [MenuItem("Build/Extract Internal Resource")]
+//    [MenuItem("Extract Buildin/Extract Internal Resource 1")]
     public static void ExtractInternalResource()
     {
         Object[] UnityAssets = AssetDatabase.LoadAllAssetsAtPath("Resources/unity_builtin_extra");
@@ -516,18 +162,18 @@ public static class ExtractBunildInResources
 
             GetObjectFileID(asset);
 
-            if (assetType == typeof (Material))
+            if (assetType == typeof(Material))
             {
                 string createPath = "Assets/BuildInResources/Res/" + asset.name + ".mat";
                 Material newMat = new Material(asset as Material);
                 AssetDatabase.CreateAsset(newMat, createPath);
             }
-            else if (assetType == typeof (Texture2D))
+            else if (assetType == typeof(Texture2D))
             {
                 string createPath = "Assets/BuildInResources/Res/" + asset.name + ".png";
                 SaveTexture(asset as Texture2D, createPath);
             }
-            else if (assetType == typeof (Sprite))
+            else if (assetType == typeof(Sprite))
             {
                 string createPath = "Assets/BuildInResources/Res/" + asset.name + ".png";
                 Texture2D tex = (asset as Sprite).texture;
@@ -643,7 +289,7 @@ public static class ExtractBunildInResources
     }
 
 
-    [MenuItem("Build/Asset Bundle/Create Material")]
+//    [MenuItem("Extract Buildin/Create Material Test")]
     static void CreateMaterial()
     {
         // Create a simple material asset
@@ -665,7 +311,7 @@ public static class ExtractBunildInResources
     }
 
 
-    [MenuItem("Build/Get File Id")]
+    [MenuItem("Extract Buildin/Get File Id")]
     static void GetObjectFileID()
     {
         Object[] objects = Selection.objects;
@@ -693,7 +339,7 @@ public static class ExtractBunildInResources
         Debug.Log("Name:" + target.name + ", FileID:" + fileID + ", GUID:" + GUID);
     }
 
-    private static PropertyInfo inspectorMode = typeof (SerializedObject).GetProperty("inspectorMode",
+    private static PropertyInfo inspectorMode = typeof(SerializedObject).GetProperty("inspectorMode",
         BindingFlags.NonPublic | BindingFlags.Instance);
 
     static long GetFileID(this Object target)
@@ -702,5 +348,48 @@ public static class ExtractBunildInResources
         inspectorMode.SetValue(serializedObject, InspectorMode.Debug, null);
         SerializedProperty localIdProp = serializedObject.FindProperty("m_LocalIdentfierInFile");
         return localIdProp.longValue;
+    }
+
+    [MenuItem("Extract Buildin/ReadYamlData")]
+
+    static void ReadYamlData()
+    {
+        Object[] objects = Selection.objects;
+        if (objects.Length == 0)
+        {
+            return;
+        }
+
+        Object selectObj = objects[0];
+
+        string buildinGUid = "0000000000000000f000000000000000";
+
+        string assetPath = AssetDatabase.GetAssetPath(selectObj);
+        string fullPath = AssetBundleUtil.ToFullPath(assetPath);
+        string yamlText = System.IO.File.ReadAllText(fullPath);
+        Debug.Log(yamlText);
+        List<int> indexPos = new List<int>();
+
+
+        string regionStr = @"{fileID: (\d+), guid: ([A-Za-z0-9]+), type: (\d+)}";
+        Regex mConstSpriteTagRegex = new Regex(regionStr, RegexOptions.Singleline);
+
+        foreach (Match match in mConstSpriteTagRegex.Matches(yamlText))
+        {
+            Debug.Log(match.Groups.Count);
+            Debug.Log(match.Index);
+
+            long fileId = long.Parse(match.Groups[1].Value);
+            string guid = match.Groups[2].Value;
+            int type = int.Parse(match.Groups[3].Value);
+            Debug.Log("______Fileid:" + fileId + ",Guid:" + guid + ",type:" + type);
+
+//            string newStr = string.Format("fileID: {0:D}, guid: {1}, type: {2:D}" , fileId+1, guid,type+1);
+//            newStr = "{"  + newStr + "}";
+
+//            yamlText = yamlText.Replace(match.Groups[0].Value, newStr);
+        }
+//        Debug.Log(yamlText);
+//        File.WriteAllText(fullPath, yamlText);
     }
 }
