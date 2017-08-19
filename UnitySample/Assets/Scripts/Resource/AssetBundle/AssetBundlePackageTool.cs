@@ -19,6 +19,40 @@ public class AssetBundlePackageTool
         mShaderFiles.Clear();
     }
 
+    public static List<string> GetAssetFileList(BundleType type)
+    {
+        List<string> assetFileList = new List<string>();
+
+        PackTargetConfig[] targetInfos = AssetBundleConfig.GetPackTargetConfig(type);
+        if (targetInfos == null || targetInfos.Length == 0)
+        {
+            return assetFileList;
+        }
+
+        List<string> allFile = new List<string>();
+
+        foreach (PackTargetConfig targetInfo in targetInfos)
+        {
+            for (int i = 0; i < targetInfo.AssetPath.Length; i++)
+            {
+                string assetPath = targetInfo.AssetPath[i];
+
+                string fullPath = AssetBundleUtil.ToFullPath(assetPath);
+
+                allFile.Clear();
+                allFile.AddRange(GetAllFiles(fullPath, targetInfo.Type));
+
+                if (targetInfo.PackStrategy == PackStrategy.Default)
+                {
+                    assetFileList.AddRange(allFile);
+                }
+            }
+        }
+
+        assetFileList = assetFileList.Distinct().ToList();
+        return assetFileList;
+    }
+
     public static void BuildAssetBundle(BundleType type, BuildTarget target, string outputPath  , bool clearBeforeBuildBundle = false)
     {
         double time_begin = EditorApplication.timeSinceStartup;
