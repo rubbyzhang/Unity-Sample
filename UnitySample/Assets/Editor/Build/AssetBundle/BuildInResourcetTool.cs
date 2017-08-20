@@ -51,7 +51,7 @@ class BuildInResourcetTool
             typeof (Mesh)
         };
 
-    private readonly string ConstReplaceShaderAssetFolder = "Assets/BuildInResources/Editor/BuildInShader/";
+    public readonly string ConstReplaceShaderAssetFolder = "Assets/BuildInResources/Editor/BuildInShader/";
 
     private readonly string ConstReplaceResRootFolder = "Assets/BuildInResources/Res/";
     private readonly string ConstReplaceMaterialFolder = "Assets/BuildInResources/Res/Material/";
@@ -542,7 +542,7 @@ class BuildInResourcetTool
         AssetItemInfo assetItem = new AssetItemInfo();
         assetItem.FileName = target.name;
         assetItem.Guid = GetGuid(target);
-        assetItem.FileId = GetFileID(target);
+        assetItem.FileId = GetLocalFileID(target);
         assetItem.FileType = target.GetType();
         return assetItem;
     }
@@ -716,14 +716,9 @@ class BuildInResourcetTool
             return false;
         }
 
-        byte[] bytes = tex.GetRawTextureData();   //不可读
-                                                  //        Debug.LogError("__________BYte:" + bytes.Length);
-                                                  //        Debug.LogError("__________Tex:" + tex.width + "," + tex.height + "," + tex.format + "," + tex.mipmapCount);
-
+        byte[] bytes = tex.GetRawTextureData();   // 内置数据设置为不可读，不能使用GetPixel()类似的接口
         Texture2D newTexture = new Texture2D(tex.width, tex.height, tex.format, tex.mipmapCount > 1);
-
         newTexture.LoadRawTextureData(bytes);
-
         newTexture.Apply();
         byte[] pngBytes = newTexture.EncodeToPNG();
         Object.DestroyImmediate(newTexture);
@@ -904,7 +899,7 @@ class BuildInResourcetTool
     private static PropertyInfo inspectorMode = typeof(SerializedObject).GetProperty("inspectorMode",
         BindingFlags.NonPublic | BindingFlags.Instance);
 
-    long GetFileID(UnityEngine.Object target)
+    long GetLocalFileID(UnityEngine.Object target)
     {
         SerializedObject serializedObject = new SerializedObject(target);
         inspectorMode.SetValue(serializedObject, InspectorMode.Debug, null);
@@ -925,11 +920,6 @@ class BuildInResourcetTool
 
     string GetGuid(UnityEngine.Object target)
     {
-        if (null == target)
-        {
-            return string.Empty;
-        }
-
         string path = AssetDatabase.GetAssetPath(target);
         string GUID = AssetDatabase.AssetPathToGUID(path);
         return GUID;

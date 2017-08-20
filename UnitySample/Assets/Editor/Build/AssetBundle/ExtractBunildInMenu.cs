@@ -20,6 +20,8 @@ public static class ExtractBunildInMenu
     [MenuItem("Extract Buildin/Extract BuildIn Resource")]
     public static void ExtractInternalResource22()
     {
+        buildInManager.CopyShader();
+
         buildInManager.Init();
     }
     
@@ -60,7 +62,10 @@ public static class ExtractBunildInMenu
     [MenuItem("Extract Buildin/Pack Character")]
     static void PackCharacter()
     {
+        buildInManager.CopyShader();
+
         buildInManager.Init();
+
         List<string> assetFiles = AssetBundlePackageTool.GetAssetFileList(BundleType.Character);
         buildInManager.Replace(assetFiles);
 
@@ -68,8 +73,21 @@ public static class ExtractBunildInMenu
 
         GameBuildPipeline_AssetBundle.BuildPlatformAll(BuildTarget.StandaloneWindows, BundleType.Character);
         buildInManager.Restore();
+
+        buildInManager.DeleteShader();
     }
 
+    [MenuItem("Extract Buildin/Copy Shader")]
+    static void CopyShader()
+    {
+        buildInManager.CopyShader();
+    }
+
+    [MenuItem("Extract Buildin/Delete Shader")]
+    static void DeleteShader()
+    {
+        buildInManager.DeleteShader();
+    }
 
     [MenuItem("Extract Buildin/Get Dependencies")]
     public static void GetDependencies2()
